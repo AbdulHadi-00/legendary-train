@@ -1,0 +1,172 @@
+
+/* ============================================================
+   NATURE GREEN THEME
+   ============================================================ */
+body.theme-nature {
+    --primary: #84cc16 !important;
+    --primary-hover: #65a30d !important;
+    --bg-dark: #102014 !important;
+    --card-bg: rgba(20, 48, 30, 0.88) !important;
+    --text-main: #f2f8ef !important;
+    --text-muted: #b6c7b0 !important;
+    --glass-border: rgba(132, 204, 22, 0.34) !important;
+    background-color: #102014 !important;
+    background-image:
+        radial-gradient(ellipse at 12% 10%, rgba(63, 145, 79, 0.50), transparent 44%),
+        radial-gradient(ellipse at 88% 16%, rgba(21, 128, 61, 0.38), transparent 42%),
+        radial-gradient(ellipse at 52% 100%, rgba(38, 92, 46, 0.48), transparent 54%),
+        linear-gradient(145deg, #102014, #173820 58%, #0b1910) !important;
+    background-size: 180% 180% !important;
+    background-attachment: fixed !important;
+    animation: natureBreeze 24s ease-in-out infinite alternate !important;
+}
+
+@keyframes natureBreeze {
+    from { background-position: 0% 30%; }
+    to { background-position: 100% 70%; }
+}
+
+body.theme-nature .glow-orb,
+body.theme-nature .gold-streak {
+    display: none !important;
+}
+
+body.theme-nature h1,
+body.theme-nature h2,
+body.theme-nature h3,
+body.theme-nature .creator-badge span {
+    color: #bef264 !important;
+    text-shadow: 0 0 18px rgba(132, 204, 22, 0.24) !important;
+}
+
+body.theme-nature .container,
+body.theme-nature .glass-panel {
+    background: rgba(20, 48, 30, 0.88) !important;
+    border-color: rgba(132, 204, 22, 0.34) !important;
+    box-shadow: 0 24px 70px rgba(5, 20, 9, 0.58), 0 0 28px rgba(132, 204, 22, 0.10) !important;
+    backdrop-filter: blur(20px) saturate(125%) !important;
+}
+
+body.theme-nature .digit-input,
+body.theme-nature .input-field {
+    color: #f2f8ef !important;
+    background: rgba(8, 24, 13, 0.68) !important;
+    border: 1px solid rgba(132, 204, 22, 0.38) !important;
+}
+
+body.theme-nature .digit-input:focus,
+body.theme-nature .input-field:focus {
+    border-color: #84cc16 !important;
+    box-shadow: 0 0 22px rgba(132, 204, 22, 0.34) !important;
+}
+
+body.theme-nature .btn:not(.btn-secondary) {
+    color: #102014 !important;
+    background: linear-gradient(135deg, #bef264, #65a30d) !important;
+    box-shadow: 0 10px 28px rgba(101, 163, 13, 0.28) !important;
+}
+
+body.theme-nature .btn-secondary {
+    color: #f2f8ef !important;
+    background: rgba(255, 255, 255, 0.035) !important;
+    border: 1px solid rgba(132, 204, 22, 0.34) !important;
+}
+
+body.theme-nature .particle { background: #bef264 !important; }
+
+
+/* ============================================================
+   PEACEFUL WHITE THEME
+   ============================================================ */
+body.theme-peaceful {
+    --primary: #64748b !important;
+    --primary-hover: #475569 !important;
+    --bg-dark: #eef2f4 !important;
+    --card-bg: rgba(255, 255, 255, 0.88) !important;
+    --text-main: #1e293b !important;
+    --text-muted: #64748b !important;
+    --glass-border: rgba(100, 116, 139, 0.22) !important;
+    background-color: #f7faf8 !important;
+    background-image:
+        radial-gradient(ellipse at 12% 8%, rgba(191, 219, 205, 0.46), transparent 42%),
+        radial-gradient(ellipse at 88% 18%, rgba(208, 220, 224, 0.50), transparent 44%),
+        radial-gradient(ellipse at 50% 100%, rgba(226, 232, 240, 0.62), transparent 52%),
+        linear-gradient(145deg, #ffffff, #f3f7f5 58%, #edf2f0) !important;
+    background-size: 180% 180% !important;
+    background-attachment: fixed !important;
+    animation: peacefulDrift 28s ease-in-out infinite alternate !important;
+}
+
+@keyframes peacefulDrift {
+    from { background-position: 0% 40%; }
+    to { background-position: 100% 60%; }
+}
+
+body.theme-peaceful .glow-orb,
+body.theme-peaceful .gold-streak {
+    display: none !important;
+}
+
+body.theme-peaceful h1,
+body.theme-peaceful h2,
+body.theme-peaceful h3,
+body.theme-peaceful .creator-badge span {
+    color: #334155 !important;
+    text-shadow: none !important;
+}
+
+body.theme-peaceful p,
+body.theme-peaceful label,
+body.theme-peaceful span,
+body.theme-peaceful .subtitle {
+    color: var(--text-muted) !important;
+}
+
+body.theme-peaceful .container,
+body.theme-peaceful .glass-panel {
+    background: rgba(255, 255, 255, 0.90) !important;
+    border-color: rgba(100, 116, 139, 0.22) !important;
+    box-shadow: 0 24px 70px rgba(71, 85, 105, 0.14), 0 0 22px rgba(148, 163, 184, 0.10) !important;
+    backdrop-filter: blur(22px) saturate(105%) !important;
+}
+
+body.theme-peaceful .digit-input,
+body.theme-peaceful .input-field {
+    color: #1e293b !important;
+    background: rgba(248, 250, 252, 0.90) !important;
+    border: 1px solid rgba(100, 116, 139, 0.26) !important;
+    box-shadow: inset 0 2px 8px rgba(71, 85, 105, 0.06) !important;
+}
+
+body.theme-peaceful .digit-input:focus,
+body.theme-peaceful .input-field:focus {
+    border-color: #94a3b8 !important;
+    box-shadow: 0 0 20px rgba(148, 163, 184, 0.22) !important;
+}
+
+body.theme-peaceful .btn:not(.btn-secondary) {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #94a3b8, #64748b) !important;
+    box-shadow: 0 10px 28px rgba(100, 116, 139, 0.18) !important;
+}
+
+body.theme-peaceful .btn-secondary {
+    color: #334155 !important;
+    background: rgba(255, 255, 255, 0.68) !important;
+    border: 1px solid rgba(100, 116, 139, 0.24) !important;
+}
+
+body.theme-peaceful .creator-badge {
+    color: #64748b !important;
+    background: rgba(255, 255, 255, 0.88) !important;
+    border-color: rgba(100, 116, 139, 0.22) !important;
+}
+
+body.theme-peaceful .particle { background: #94a3b8 !important; }
+
+@media (prefers-reduced-motion: reduce) {
+    body.theme-nature,
+    body.theme-peaceful {
+        animation: none !important;
+    }
+}
