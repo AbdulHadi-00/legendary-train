@@ -1,0 +1,235 @@
+/*
+ * Theme polish for the three custom themes added after the original theme set.
+ * The original gold, matrix, OLED, and Apple theme rules are intentionally
+ * untouched; these scoped rules only apply when one of the new themes is active.
+ */
+
+body.theme-blossom,
+body.theme-orange,
+body.theme-sunset {
+    min-height: 100vh;
+    background-attachment: fixed !important;
+    background-repeat: no-repeat !important;
+    background-size: 200% 200% !important;
+    color: var(--text-main) !important;
+    transition: background-color 300ms ease, color 300ms ease;
+}
+
+/* Blossom — a calm rose-and-plum night palette. */
+body.theme-blossom {
+    --primary: #f472b6 !important;
+    --primary-hover: #ec4899 !important;
+    --bg-dark: #180b17 !important;
+    --card-bg: rgba(36, 13, 33, 0.88) !important;
+    --text-main: #fff1f7 !important;
+    --text-muted: #d3a9c2 !important;
+    --glass-border: rgba(244, 114, 182, 0.32) !important;
+    background-color: #180b17 !important;
+    background-image:
+        radial-gradient(ellipse at 12% 8%, rgba(190, 65, 139, 0.42), transparent 42%),
+        radial-gradient(ellipse at 88% 18%, rgba(104, 49, 111, 0.40), transparent 44%),
+        radial-gradient(ellipse at 55% 100%, rgba(91, 28, 73, 0.56), transparent 52%),
+        linear-gradient(145deg, #180b17, #241022 55%, #100a18) !important;
+    animation: blossomDrift 24s ease-in-out infinite alternate !important;
+}
+
+/* Orange — warm ember light over deep charcoal. */
+body.theme-orange {
+    --primary: #fb923c !important;
+    --primary-hover: #f97316 !important;
+    --bg-dark: #160d08 !important;
+    --card-bg: rgba(35, 18, 8, 0.90) !important;
+    --text-main: #fff7ed !important;
+    --text-muted: #d6b69a !important;
+    --glass-border: rgba(251, 146, 60, 0.34) !important;
+    background-color: #160d08 !important;
+    background-image:
+        radial-gradient(ellipse at 15% 15%, rgba(249, 115, 22, 0.38), transparent 43%),
+        radial-gradient(ellipse at 88% 25%, rgba(234, 88, 12, 0.34), transparent 42%),
+        radial-gradient(ellipse at 50% 105%, rgba(120, 53, 15, 0.46), transparent 55%),
+        linear-gradient(140deg, #160d08, #241309 52%, #100b08) !important;
+    animation: emberDrift 18s ease-in-out infinite alternate !important;
+}
+
+/* Sunset — a dusky violet horizon with a restrained golden glow. */
+body.theme-sunset {
+    --primary: #facc15 !important;
+    --primary-hover: #f59e0b !important;
+    --bg-dark: #171126 !important;
+    --card-bg: rgba(29, 19, 39, 0.90) !important;
+    --text-main: #fff8e7 !important;
+    --text-muted: #c9bdd5 !important;
+    --glass-border: rgba(250, 204, 21, 0.30) !important;
+    background-color: #171126 !important;
+    background-image:
+        radial-gradient(ellipse at 50% 100%, rgba(220, 75, 58, 0.42), transparent 48%),
+        radial-gradient(ellipse at 12% 12%, rgba(124, 58, 118, 0.42), transparent 48%),
+        radial-gradient(ellipse at 90% 20%, rgba(245, 158, 11, 0.23), transparent 42%),
+        linear-gradient(160deg, #171126, #2b1935 58%, #130d20) !important;
+    animation: sunsetGlow 22s ease-in-out infinite alternate !important;
+}
+
+@keyframes blossomDrift {
+    from { background-position: 0% 40%; }
+    to { background-position: 100% 60%; }
+}
+
+@keyframes emberDrift {
+    from { background-position: 0% 20%; }
+    to { background-position: 100% 80%; }
+}
+
+@keyframes sunsetGlow {
+    from { background-position: 20% 30%; }
+    to { background-position: 80% 70%; }
+}
+
+/* The added themes use their own ambient gradients instead of the gold orbs. */
+body.theme-blossom .glow-orb,
+body.theme-blossom .gold-streak,
+body.theme-orange .glow-orb,
+body.theme-orange .gold-streak,
+body.theme-sunset .glow-orb,
+body.theme-sunset .gold-streak {
+    display: none !important;
+}
+
+body.theme-blossom h1,
+body.theme-blossom h2,
+body.theme-blossom h3,
+body.theme-blossom .creator-badge span {
+    color: #f9a8d4 !important;
+    text-shadow: 0 0 18px rgba(244, 114, 182, 0.25) !important;
+}
+
+body.theme-orange h1,
+body.theme-orange h2,
+body.theme-orange h3,
+body.theme-orange .creator-badge span {
+    color: #fdba74 !important;
+    text-shadow: 0 0 18px rgba(251, 146, 60, 0.25) !important;
+}
+
+body.theme-sunset h1,
+body.theme-sunset h2,
+body.theme-sunset h3,
+body.theme-sunset .creator-badge span {
+    color: #fde68a !important;
+    text-shadow: 0 0 18px rgba(250, 204, 21, 0.22) !important;
+}
+
+body.theme-blossom .container,
+body.theme-blossom .glass-panel,
+body.theme-orange .container,
+body.theme-orange .glass-panel,
+body.theme-sunset .container,
+body.theme-sunset .glass-panel {
+    color: var(--text-main) !important;
+    border-color: var(--glass-border) !important;
+    backdrop-filter: blur(20px) saturate(125%) !important;
+}
+
+body.theme-blossom .container,
+body.theme-blossom .glass-panel {
+    background: rgba(36, 13, 33, 0.86) !important;
+    box-shadow: 0 24px 70px rgba(8, 3, 10, 0.52), 0 0 28px rgba(244, 114, 182, 0.09) !important;
+}
+
+body.theme-orange .container,
+body.theme-orange .glass-panel {
+    background: rgba(35, 18, 8, 0.88) !important;
+    box-shadow: 0 24px 70px rgba(8, 4, 1, 0.56), 0 0 28px rgba(251, 146, 60, 0.10) !important;
+}
+
+body.theme-sunset .container,
+body.theme-sunset .glass-panel {
+    background: rgba(29, 19, 39, 0.88) !important;
+    box-shadow: 0 24px 70px rgba(5, 3, 12, 0.56), 0 0 28px rgba(250, 204, 21, 0.08) !important;
+}
+
+body.theme-blossom .digit-input,
+body.theme-blossom .input-field,
+body.theme-orange .digit-input,
+body.theme-orange .input-field,
+body.theme-sunset .digit-input,
+body.theme-sunset .input-field {
+    color: var(--text-main) !important;
+    background: rgba(8, 6, 12, 0.62) !important;
+    border: 1px solid var(--glass-border) !important;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.30) !important;
+}
+
+body.theme-blossom .digit-input:focus,
+body.theme-orange .digit-input:focus,
+body.theme-sunset .digit-input:focus,
+body.theme-blossom .input-field:focus,
+body.theme-orange .input-field:focus,
+body.theme-sunset .input-field:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 22%, transparent) !important;
+    transform: translateY(-2px) !important;
+}
+
+body.theme-blossom .toggle-pin,
+body.theme-orange .toggle-pin,
+body.theme-sunset .toggle-pin {
+    color: var(--primary) !important;
+    border-color: var(--glass-border) !important;
+}
+
+body.theme-blossom .btn:not(.btn-secondary) {
+    color: #2a1021 !important;
+    background: linear-gradient(135deg, #f9a8d4, #ec4899) !important;
+    box-shadow: 0 10px 28px rgba(236, 72, 153, 0.22) !important;
+}
+
+body.theme-orange .btn:not(.btn-secondary) {
+    color: #261105 !important;
+    background: linear-gradient(135deg, #fdba74, #f97316) !important;
+    box-shadow: 0 10px 28px rgba(249, 115, 22, 0.22) !important;
+}
+
+body.theme-sunset .btn:not(.btn-secondary) {
+    color: #241306 !important;
+    background: linear-gradient(135deg, #fde68a, #f59e0b) !important;
+    box-shadow: 0 10px 28px rgba(245, 158, 11, 0.20) !important;
+}
+
+body.theme-blossom .btn-secondary,
+body.theme-orange .btn-secondary,
+body.theme-sunset .btn-secondary {
+    color: var(--text-main) !important;
+    background: rgba(255, 255, 255, 0.035) !important;
+    border: 1px solid var(--glass-border) !important;
+    box-shadow: none !important;
+}
+
+body.theme-blossom .btn-secondary:hover,
+body.theme-orange .btn-secondary:hover,
+body.theme-sunset .btn-secondary:hover {
+    color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    background: color-mix(in srgb, var(--primary) 10%, transparent) !important;
+}
+
+body.theme-blossom .creator-badge,
+body.theme-orange .creator-badge,
+body.theme-sunset .creator-badge {
+    color: var(--text-muted) !important;
+    background: var(--card-bg) !important;
+    border-color: var(--glass-border) !important;
+}
+
+body.theme-blossom .particle { background: #f9a8d4 !important; }
+body.theme-orange .particle { background: #fdba74 !important; }
+body.theme-sunset .particle { background: #fde68a !important; }
+
+/* Keep these palettes usable when a user prefers reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+    body.theme-blossom,
+    body.theme-orange,
+    body.theme-sunset {
+        animation: none !important;
+        scroll-behavior: auto !important;
+    }
+}
