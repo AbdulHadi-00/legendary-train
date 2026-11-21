@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Lock Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            width: 320px;
+            margin: 0;
+            padding: 1.25rem;
+            background: #0a110d;
+            background-image: radial-gradient(circle at 50% 0%, rgba(197, 160, 89, 0.15), transparent 70%);
+            color: #f1f5f9;
+            font-family: 'Outfit', sans-serif;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        .popup-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        .popup-header img {
+            width: 36px;
+            height: 36px;
+            filter: drop-shadow(0 0 8px rgba(197, 160, 89, 0.4));
+        }
+
+        .popup-header h1 {
+            font-size: 1.15rem;
+            margin: 0;
+            font-weight: 700;
+            color: #f1f5f9;
+            letter-spacing: 0.02em;
+        }
+
+        .popup-badge {
+            font-size: 0.7rem;
+            color: #c5a059;
+            background: rgba(197, 160, 89, 0.12);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            border-radius: 1rem;
+            padding: 0.15rem 0.5rem;
+            display: inline-block;
+            margin-top: 0.2rem;
+            font-weight: 600;
+        }
+
+        .popup-status-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(197, 160, 89, 0.25);
+            border-radius: 0.75rem;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .popup-status-label {
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+
+        .popup-status-val {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #10b981;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .popup-btn-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .popup-btn-stack .btn {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            font-size: 0.88rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            box-sizing: border-box;
+            border-radius: 0.65rem;
+        }
+
+        .popup-btn-primary {
+            background: linear-gradient(135deg, #d4af37, #c5a059);
+            color: #050a08;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .popup-btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(197, 160, 89, 0.45);
+        }
+
+        .popup-footer {
+            margin-top: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+    </style>
+    <link rel="icon" type="image/png" href="H_icon.png">
+</head>
+
+<body>
+    <div class="popup-header">
+        <img src="H_icon.png" alt="Logo">
+        <div>
+            <h1>Profile Lock Pro</h1>
+            <span class="popup-badge">Real HTML Anti-Bypass</span>
+        </div>
+    </div>
+
+    <div class="popup-status-box">
+        <span class="popup-status-label">Security Shield</span>
+        <span class="popup-status-val" id="shield-status">● Protected</span>
+    </div>
+
+    <div class="popup-btn-stack">
+        <button id="lock-browser-now-btn" class="btn popup-btn-primary" type="button">
+            <span>🔒 Lock Browser Now</span>
+        </button>
+
+        <button id="lock-active-tab-btn" class="btn btn-secondary" type="button">
+            <span>📌 Lock Current Tab</span>
+        </button>
+
+        <button id="open-settings-btn" class="btn btn-secondary" type="button">
+            <span>⚙️ Settings &amp; Vault</span>
+        </button>
+    </div>
+
+    <div class="popup-footer">
+        <span>By Abdul Hadi</span>
+        <button id="selfDestructBtn" class="icon-btn" title="Hold 2s for emergency wipe" style="background:none; border:none; cursor:pointer; color:#ef4444; font-size: 0.9rem;">🗑️</button>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>

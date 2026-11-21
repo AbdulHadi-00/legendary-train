@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Lock Profile.Abdul Hadi </title>
+    <link rel="stylesheet" href="style.css">
+    <script src="i18n.js"></script>
+    <script src="totp.js"></script>
+    <link rel="icon" type="image/png" href="H_icon.png">
+</head>
+
+<body class="lock-page">
+    <canvas id="matrix-canvas"></canvas>
+    <div class="glow-orb" id="orb-1"></div>
+    <div class="glow-orb" id="orb-2"></div>
+    <div class="glow-orb" id="orb-3"></div>
+    <div class="gold-streak" id="streak-1"></div>
+    <div class="gold-streak" id="streak-2"></div>
+    
+    <div class="container">
+        <!-- Multilingual Language Selector Bar -->
+        <div class="lock-lang-bar">
+            <button type="button" class="lang-pill active" data-lang="en">🇬🇧 English</button>
+            <button type="button" class="lang-pill" data-lang="ur">🇵🇰 اردو</button>
+            <button type="button" class="lang-pill" data-lang="ar">🇸🇦 العربية</button>
+            <button type="button" class="lang-pill" data-lang="zh">🇨🇳 中文</button>
+        </div>
+
+        <div class="header">
+            <svg class="lock-icon-anim" xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#c5a059" viewBox="0 0 256 256"
+                style="margin-bottom: 2rem; filter: drop-shadow(0 0 10px rgba(197, 160, 89, 0.3));">
+                <path
+                    d="M208,80H176V56a48,48,0,0,0-96,0V80H48A16,16,0,0,0,32,96V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V96A16,16,0,0,0,208,80ZM96,56a32,32,0,0,1,64,0V80H96ZM208,208H48V96H208V208Z">
+                </path>
+            </svg>
+            <h1 id="lock-title" data-i18n="lock_title">Profile Locked</h1>
+
+            <p class="subtitle" id="lock-subtitle" style="margin-bottom: 0.5rem;" data-i18n="lock_subtitle">Enter your 8-digit passcode to continue.</p>
+            
+            <!-- Multi-Profile Switcher Bar -->
+            <div id="lock-profile-selector" style="display: none; justify-content: center; align-items: center; gap: 0.6rem; margin-top: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
+                <!-- Populated dynamically with profile chips -->
+            </div>
+
+            <div id="dynamic-user-badge" style="display: none; align-items: center; justify-content: center; gap: 0.8rem; margin-top: 1rem; background: rgba(197, 160, 89, 0.05); border: 1px solid rgba(197, 160, 89, 0.2); padding: 0.5rem 1rem; border-radius: 2rem; width: fit-content; margin-left: auto; margin-right: auto;">
+                <img id="lock-user-avatar" src="" style="width: 24px; height: 24px; border-radius: 50%;">
+                <span id="lock-user-email" style="font-size: 0.85rem; color: var(--primary); font-family: monospace;"></span>
+            </div>
+        </div>
+
+        <div class="passcode-container" id="passcode-container">
+            <input type="password" maxlength="1" class="digit-input" id="digit-1" autofocus autocomplete="off">
+            <input type="password" maxlength="1" class="digit-input" id="digit-2" autocomplete="off">
+            <input type="password" maxlength="1" class="digit-input" id="digit-3" autocomplete="off">
+            <input type="password" maxlength="1" class="digit-input" id="digit-4" autocomplete="off">
+            <input type="password" maxlength="1" class="digit-input" id="digit-5" autocomplete="off">
+            <input type="password" maxlength="1" class="digit-input" id="digit-6" autocomplete="off">
+            <input type="password" maxlength="1" class="digit-input" id="digit-7" autocomplete="off">
+            <input type="password" maxlength="1" class="digit-input" id="digit-8" autocomplete="off">
+            <button id="toggle-pin" class="toggle-pin" aria-label="Toggle PIN Visibility">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 256 256" id="eye-icon">
+                    <path d="M247.31,124.76c-.35-.79-8.82-19.16-27.65-36.69C200.77,71.05,170.19,56,128,56S55.23,71.05,36.34,88.07C17.51,105.6,9,124,8.69,124.76a8,8,0,0,0,0,6.48c.35.79,8.82,19.16,27.65,36.69C55.23,184.95,85.81,200,128,200s72.77-15.05,91.66-32.07c18.83-17.53,27.3-35.9,27.65-36.69A8,8,0,0,0,247.31,124.76ZM128,184c-34.58,0-61.16-12.89-79-29.53C35.05,141.28,28.27,128,24.89,128c3.38,0,10.16-13.28,24.08-26.47C66.84,84.89,93.42,72,128,72s61.16,12.89,79,29.53c13.92,13.19,20.7,26.47,24.08,26.47-3.38,0-10.16,13.28-24.08,26.47C189.16,171.11,162.58,184,128,184Zm0-96a40,40,0,1,0,40,40A40,40,0,0,0,128,88Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,152Z"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div id="error-msg" class="error-msg" data-i18n="err_incorrect_passcode">Incorrect passcode. Try again.</div>
+        <div id="lockout-msg" class="error-msg" style="color: #c5a059; opacity: 1; transform: translateY(0); display: none;"></div>
+
+        <!-- 2FA TOTP Step 2 Panel (shown when 2FA is enabled) -->
+        <div id="totp-lock-panel" style="display: none; margin-top: 1.5rem; text-align: center; animation: slideInUp 0.4s ease;">
+            <div class="glass-panel" style="box-shadow: 0 20px 40px rgba(0,0,0,0.4); border-color: rgba(16, 185, 129, 0.4);">
+                <p style="color: #10b981; font-size: 1.1rem; font-weight: bold; margin-bottom: 0.5rem;" data-i18n="lock_totp_title">🔐 Two-Factor Authentication</p>
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.2rem;" data-i18n="lock_totp_desc">Enter 6-digit code from Google Authenticator or Authy</p>
+                
+                <input type="text" id="totp-lock-input" maxlength="6" placeholder="000000" style="text-align: center; letter-spacing: 0.5rem; font-family: monospace; font-size: 1.6rem; margin-bottom: 1.2rem; width: 180px; padding: 0.6rem; background: rgba(0,0,0,0.4); border: 1px solid var(--glass-border); color: #10b981; border-radius: 0.5rem;" autocomplete="off">
+                
+                <button id="totp-lock-btn" class="btn btn-secondary" style="width: 100%; border-color: rgba(16, 185, 129, 0.4); color: #10b981;" data-i18n="btn_totp_unlock">
+                    Verify 2FA &amp; Unlock
+                </button>
+                <div id="totp-error-msg" class="error-msg" style="margin-top: 0.8rem; display: none;" data-i18n="err_invalid_2fa">Invalid 2FA Authenticator Code.</div>
+            </div>
+        </div>
+
+        <button id="unlock-btn" class="btn" data-i18n="btn_unlock">Unlock Profile</button>
+        
+        <p style="margin-top: 2rem; margin-bottom: 0;">
+            <a href="#" id="forgot-passcode-link" style="color: var(--text-muted); font-size: 0.8rem; text-decoration: none; opacity: 0.7; transition: 0.3s;" data-i18n="link_forgot_passcode">Forgot Passcode?</a>
+        </p>
+
+        <div id="backup-code-container" style="display: none; margin-top: 2rem; animation: slideInUp 0.5s ease;">
+            <!-- 2FA EMAIL RECOVERY PANEL -->
+            <div id="email-2fa-panel" class="glass-panel" style="box-shadow: 0 20px 40px rgba(0,0,0,0.4); margin-bottom: 1.5rem; border-color: rgba(66, 133, 244, 0.4);">
+                <div style="margin-bottom: 1.2rem; display: flex; align-items: center; justify-content: center; gap: 0.8rem; width: 100%;">
+                    <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                        <path d="M5.84 14.1c-.22-.66-.35-1.36-.35-2.1s.13-1.44.35-2.1V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l3.66-2.84z" fill="#FBBC05"/>
+                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 12-4.53z" fill="#EA4335"/>
+                    </svg>
+                    <p style="margin: 0; font-size: 1.2rem; color: var(--text-main); font-weight: 600;" data-i18n="lock_email_2fa_title">2FA Email Recovery</p>
+                </div>
+                
+                <p id="twofa-desc-text" style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.2rem; line-height: 1.4;" data-i18n="lock_email_2fa_desc">
+                    Send a one-time alphanumeric code to your linked recovery email:
+                </p>
+                <div style="margin-bottom: 1.2rem; text-align: center;">
+                    <strong id="twofa-target-email" style="color: #4285F4; font-size: 0.95rem; word-break: break-all;">Loading recovery email...</strong>
+                </div>
+
+                <button id="twofa-send-code-btn" class="btn btn-secondary" style="width: 100%; border-color: rgba(66, 133, 244, 0.5); color: #4285F4; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                    </svg>
+                    <span data-i18n="btn_send_2fa">Send One-Time 2FA Code</span>
+                </button>
+
+                <div id="twofa-input-group" style="display: none;">
+                    <input type="text" id="twofa-code-input" class="input-field" placeholder="ENTER 6-DIGIT CODE" maxlength="8" style="text-align: center; letter-spacing: 0.35rem; font-family: monospace; font-size: 1.3rem; margin-bottom: 1rem; width: 100%; text-transform: uppercase;" autocomplete="off">
+                    <button id="twofa-verify-btn" class="btn" style="width: 100%; background: linear-gradient(135deg, #4285F4, #1a73e8);" data-i18n="btn_verify_2fa">
+                        Verify 2FA &amp; Unlock
+                    </button>
+                </div>
+
+                <div id="twofa-status-msg" style="margin-top: 0.8rem; font-size: 0.85rem; display: none;"></div>
+            </div>
+
+            <div class="glass-panel" style="box-shadow: 0 20px 40px rgba(0,0,0,0.4); margin-bottom: 1rem;">
+                <div style="margin-bottom: 2rem; display: flex; align-items: center; justify-content: center; gap: 0.8rem; width: 100%;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="var(--primary)" viewBox="0 0 256 256">
+                        <path d="M208,80H176V56a48,48,0,0,0-96,0V80H48A16,16,0,0,0,32,96V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V96A16,16,0,0,0,208,80ZM96,56a32,32,0,0,1,64,0V80H96Z" opacity="0.2"></path><path d="M208,72H184V56a56,56,0,0,0-112,0V72H48A16,16,0,0,0,32,88V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V88A16,16,0,0,0,208,72ZM88,56a40,40,0,0,1,80,0V72H88ZM208,208H48V88H208V208Z"></path>
+                    </svg>
+                    <p style="margin: 0; font-size: 1.2rem; color: var(--text-main); font-weight: 500;" data-i18n="lock_backup_title">Backup Recovery</p>
+                </div>
+                <input type="text" id="backup-input" class="input-field" placeholder="Enter Backup Code" data-i18n-placeholder="input_enter_backup" style="text-align: center; letter-spacing: 0.3rem; font-family: monospace; font-size: 1.4rem; margin-bottom: 2rem; width: 100%;">
+                <button id="backup-unlock-btn" class="btn btn-secondary" data-i18n="btn_verify_unlock">
+                    Verify & Unlock
+                </button>
+            </div>
+            
+            <div id="security-question-panel" class="glass-panel" style="box-shadow: 0 20px 40px rgba(0,0,0,0.4); display: none;">
+                <p style="color: var(--primary); font-size: 0.9rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: bold;" data-i18n="lock_sec_title">Security Question</p>
+                <p id="lock-security-question" style="color: var(--text-main); font-size: 1.1rem; margin-bottom: 1.5rem; line-height: 1.4;">Loading...</p>
+                <input type="text" id="security-answer-input" class="input-field" placeholder="Enter Answer (Case-Sensitive)" data-i18n-placeholder="input_sec_answer" style="text-align: center; font-size: 1.1rem; margin-bottom: 1.5rem; width: 100%;" autocomplete="off">
+                <button id="security-answer-btn" class="btn btn-secondary" data-i18n="btn_submit_answer">
+                    Submit Answer
+                </button>
+                <div id="security-error-msg" class="error-msg" style="margin-top: 1rem;" data-i18n="err_incorrect_answer">Incorrect answer.</div>
+            </div>
+
+            <div id="voice-unlock-panel" class="glass-panel" style="box-shadow: 0 20px 40px rgba(0,0,0,0.4); display: none; margin-top: 1rem;">
+                <p style="color: #10b981; font-size: 0.9rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: bold;" data-i18n="lock_voice_title">🎙 Voice Unlock</p>
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1.5rem; line-height: 1.4;" data-i18n="lock_voice_desc">Press the button and speak your unlock phrase clearly.</p>
+                
+                <div id="voice-visualizer" style="display: none; margin-bottom: 1.5rem; width: 100%; height: 80px; position: relative; overflow: hidden; border-radius: 0.5rem; background: rgba(0,0,0,0.4); border: 1px solid rgba(16, 185, 129, 0.2);">
+                    <canvas id="voice-waveform" style="width: 100%; height: 100%;"></canvas>
+                </div>
+
+                <div id="voice-result-container" style="display: none; margin-bottom: 1.5rem; text-align: center;">
+                    <p id="voice-result-text" style="color: var(--text-main); font-size: 1.1rem; font-style: italic; margin-bottom: 0.5rem;"></p>
+                    <div id="voice-success-icon" style="display: none; margin: 0.5rem auto;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#10b981" viewBox="0 0 256 256" style="filter: drop-shadow(0 0 12px rgba(16,185,129,0.5));">
+                            <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm45.66,85.66-56,56a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32Z"></path>
+                        </svg>
+                    </div>
+                    <div id="voice-fail-icon" style="display: none; margin: 0.5rem auto;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#ff4d4d" viewBox="0 0 256 256" style="filter: drop-shadow(0 0 12px rgba(255,77,77,0.5));">
+                            <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm37.66,130.34a8,8,0,0,1-11.32,11.32L128,139.31l-26.34,26.35a8,8,0,0,1-11.32-11.32L116.69,128,90.34,101.66a8,8,0,0,1,11.32-11.32L128,116.69l26.34-26.35a8,8,0,0,1,11.32,11.32L139.31,128Z"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <button id="voice-unlock-btn" class="btn btn-secondary" style="background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.4); color: #10b981;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256" style="vertical-align: middle; margin-right: 8px;">
+                        <path d="M128,176a48,48,0,0,0,48-48V64a48,48,0,0,0-96,0v64A48,48,0,0,0,128,176ZM96,64a32,32,0,0,1,64,0v64a32,32,0,0,1-64,0Zm40,143.6V232a8,8,0,0,1-16,0V207.6A80.11,80.11,0,0,1,48,128a8,8,0,0,1,16,0,64,64,0,0,0,128,0,8,8,0,0,1,16,0A80.11,80.11,0,0,1,136,207.6Z"></path>
+                    </svg>
+                    <span data-i18n="btn_start_voice">Start Voice Unlock</span>
+                </button>
+                <div id="voice-error-msg" class="error-msg" style="margin-top: 1rem;" data-i18n="err_voice_fail">Voice did not match.</div>
+
+                <hr style="border: none; border-top: 1px solid var(--glass-border); margin: 1.5rem 0;">
+
+                <!-- FACE UNLOCK -->
+                <p style="color: var(--text-main); font-weight: 600; margin-bottom: 0.8rem; text-align: center;" data-i18n="lock_face_title">Face Unlock</p>
+                <div id="face-unlock-container" style="display: none; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                    <div style="position: relative; width: 240px; height: 180px; border-radius: 0.5rem; overflow: hidden; border: 2px solid #f59e0b; margin-bottom: 0.5rem;">
+                        <video id="lock-face-video" width="240" height="180" autoplay muted style="object-fit: cover;"></video>
+                        <canvas id="lock-face-canvas" style="position: absolute; top: 0; left: 0;"></canvas>
+                    </div>
+                    <p id="lock-face-status" style="color: #f59e0b; font-size: 0.85rem; margin-bottom: 0.5rem;">Loading AI Models...</p>
+                </div>
+                
+                <button id="face-unlock-btn" class="btn btn-secondary" style="background: rgba(245,158,11,0.1); border-color: rgba(245,158,11,0.4); color: #f59e0b; width: 100%;" data-i18n="btn_start_face">
+                    📸 Start Face Unlock
+                </button>
+                <div id="face-error-msg" class="error-msg" style="margin-top: 1rem;" data-i18n="err_face_fail">Face did not match.</div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="face-api.min.js"></script>
+    <script src="lock.js"></script>
+</body>
+
+</html>

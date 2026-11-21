@@ -1,0 +1,1547 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Scheherazade+New:wght@400;700&family=Amiri:wght@400;700&display=swap');
+
+:root {
+    --primary: #c5a059;
+    /* Golden */
+    --primary-hover: #d4af37;
+    --bg-dark: #0a110d;
+    /* Deep Dark Green/Black */
+    --sea-green: #2d5a4c;
+    --sea-green-bright: #3e8e75;
+    --card-bg: rgba(10, 17, 13, 0.85);
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    --accent-gold: radial-gradient(circle at center, #d4af37 0%, #c5a059 100%);
+    --glass-border: rgba(197, 160, 89, 0.2);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Outfit', sans-serif;
+    /* Next Level Animated Gradient Mesh */
+    background: #050a08;
+    background-image:
+        radial-gradient(at 0% 0%, hsla(158, 33%, 20%, 1) 0, transparent 50%),
+        radial-gradient(at 50% 0%, hsla(43, 40%, 40%, 0.3) 0, transparent 50%),
+        radial-gradient(at 100% 0%, hsla(158, 33%, 20%, 1) 0, transparent 50%),
+        radial-gradient(at 0% 50%, hsla(43, 40%, 40%, 0.3) 0, transparent 50%),
+        radial-gradient(at 50% 50%, hsla(158, 33%, 15%, 1) 0, transparent 50%),
+        radial-gradient(at 100% 50%, hsla(43, 40%, 40%, 0.3) 0, transparent 50%),
+        radial-gradient(at 0% 100%, hsla(158, 33%, 20%, 1) 0, transparent 50%),
+        radial-gradient(at 50% 100%, hsla(43, 40%, 40%, 0.3) 0, transparent 50%),
+        radial-gradient(at 100% 100%, hsla(158, 33%, 20%, 1) 0, transparent 50%);
+    background-size: 200% 200%;
+    animation: meshGradient 20s ease infinite;
+    background-attachment: fixed;
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 3rem 1rem;
+    box-sizing: border-box;
+}
+
+@keyframes meshGradient {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-position: 100% 100%;
+    }
+
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+@keyframes floatOrb {
+    0% {
+        transform: translate(0, 0) rotate(0deg) scale(1.0);
+    }
+
+    33% {
+        transform: translate(150px, -100px) rotate(120deg) scale(1.2);
+    }
+
+    66% {
+        transform: translate(-100px, 150px) rotate(240deg) scale(0.8);
+    }
+
+    100% {
+        transform: translate(0, 0) rotate(360deg) scale(1.0);
+    }
+}
+
+/* Specific class for the Lock Screen to ensure perfect centering but allow scrolling */
+body.lock-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Center initially, but allow scrolling to the top/bottom */
+    min-height: 100vh;
+    padding: 5rem 1rem;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+body.lock-page::before {
+    content: '';
+    position: fixed;
+    /* Fixed backdrop so it stays while scrolling */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(10px);
+    z-index: -1;
+}
+
+.lock-page .container {
+    max-width: 600px;
+    padding: 4rem 3rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Background Animation */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://www.transparenttextures.com/patterns/dark-matter.png');
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.container {
+    background: var(--card-bg);
+    backdrop-filter: blur(25px);
+    border: 1px solid var(--glass-border);
+    padding: 3.5rem 3rem;
+    border-radius: 2.5rem;
+    box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.8), 0 0 20px rgba(197, 160, 89, 0.1);
+    text-align: center;
+    max-width: 580px;
+    width: 95%;
+    position: relative;
+    z-index: 1;
+    animation: slideInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+    color: #c5a059;
+    /* Consistent soft gold */
+    letter-spacing: -0.01em;
+    font-weight: 700;
+}
+
+p {
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+}
+
+p.subtitle {
+    color: var(--text-main);
+    opacity: 0.6;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 3rem;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+}
+
+.passcode-container {
+    display: flex;
+    justify-content: space-between;
+    /* Blocks span entire horizontal width */
+    align-items: center;
+    margin-bottom: 2.5rem;
+    background: rgba(10, 20, 15, 0.7);
+    /* Lighter dark-green/charcoal than modal */
+    padding: 1.2rem 1.5rem;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(197, 160, 89, 0.2);
+    box-shadow: inset 0 10px 40px rgba(0, 0, 0, 0.5);
+    width: 500px;
+    /* Refined width for 8 digits */
+    height: 6rem;
+    /* Fixed height for blocks to fill */
+    box-sizing: border-box;
+}
+
+.glass-panel {
+    display: inline-flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 2rem 2.5rem;
+    border-radius: 2rem;
+    border: 1px solid var(--glass-border);
+    box-shadow: inset 0 10px 40px rgba(0, 0, 0, 0.5);
+    min-width: 500px;
+    box-sizing: border-box;
+    flex-direction: column;
+}
+
+.digit-input {
+    width: 3.5rem;
+    /* Large square inputs */
+    height: 3.5rem;
+    background: #1a231f;
+    /* Charcoal-green */
+    border: 0.5px solid rgba(197, 160, 89, 0.4);
+    /* Thin gold border */
+    border-radius: 0.8rem;
+    text-align: center;
+    font-size: 1.6rem;
+    color: #c5a059;
+    font-weight: 700;
+    transition: all 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+    box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.6);
+}
+
+.digit-input:focus {
+    outline: none;
+    border-color: #c5a059;
+    background: #23302a;
+    box-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
+    transform: translateY(-4px);
+}
+
+.toggle-pin {
+    background: none;
+    border: 1px solid rgba(197, 160, 89, 0.2);
+    border-radius: 0.8em;
+    color: #c5a059;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3.5rem;
+    width: 3.5rem;
+    transition: 0.3s;
+}
+
+.toggle-pin:hover {
+    background: rgba(197, 160, 89, 0.1);
+    transform: translateY(-2px);
+}
+
+.toggle-pin:active {
+    transform: translateY(0);
+}
+
+.toggle-pin svg {
+    filter: drop-shadow(0 0 5px rgba(197, 160, 89, 0.2));
+}
+
+.btn {
+    background: linear-gradient(135deg, #c5a059 0%, #d4af37 100%);
+    color: #050a08;
+    border: none;
+    padding: 1.2rem 2rem;
+    border-radius: 1.2rem;
+    font-weight: 800;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    width: 100%;
+    margin-top: 1rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(197, 160, 89, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.lock-page .btn {
+    width: 500px;
+    /* MATCHES PASSCODE CONTAINER WIDTH */
+}
+
+/* Background Animated Orbs */
+.glow-orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+    /* Increased visibility */
+    z-index: 1;
+    /* Above body background, below container */
+    pointer-events: none;
+    animation: floatOrb 25s infinite alternate ease-in-out;
+}
+
+#orb-1 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, #c5a059 0%, transparent 70%);
+    top: -200px;
+    left: -200px;
+}
+
+#orb-2 {
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, #2d5a4c 0%, transparent 70%);
+    bottom: -250px;
+    right: -200px;
+    animation-duration: 35s;
+    animation-delay: -5s;
+}
+
+#orb-3 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, #c5a059 0%, transparent 70%);
+    top: 40%;
+    right: 10%;
+    animation-duration: 30s;
+    animation-delay: -10s;
+}
+
+/* --- Next-Level Golden Flashes (Cinematic Light Beams) --- */
+.gold-streak {
+    position: fixed;
+    width: 200vw;
+    height: 25vh;
+    /* Massive cinematic beam */
+    background: radial-gradient(ellipse at center, hsla(43, 90%, 65%, 0.45) 0%, transparent 65%);
+    z-index: 2;
+    pointer-events: none;
+    filter: blur(40px);
+    opacity: 0;
+    mix-blend-mode: color-dodge;
+    /* Creates an ultra-bright "light" effect when overlapping greens */
+}
+
+#streak-1 {
+    top: 5%;
+    left: -50%;
+    transform: rotate(-25deg);
+    animation: goldenFlare 9s infinite cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+#streak-2 {
+    bottom: 15%;
+    right: -50%;
+    transform: rotate(-40deg);
+    animation: goldenFlare 14s infinite cubic-bezier(0.25, 0.1, 0.25, 1);
+    animation-delay: 5s;
+}
+
+@keyframes goldenFlare {
+    0% {
+        transform: rotate(-30deg) translate(-30%, -100px) scaleX(0.5) scaleY(0.2);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.9;
+        /* Brilliant flash point */
+        transform: rotate(-30deg) translate(10%, 50px) scaleX(1.5) scaleY(1.5);
+    }
+
+    100% {
+        transform: rotate(-30deg) translate(50%, 200px) scaleX(0.5) scaleY(0.2);
+        opacity: 0;
+    }
+}
+
+@keyframes floatOrb {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(100px, 50px) scale(1.1);
+    }
+
+    66% {
+        transform: translate(-50px, 150px) scale(0.9);
+    }
+
+    100% {
+        transform: translate(50px, -50px) scale(1);
+    }
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.btn:hover::after {
+    left: 100%;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px -5px rgba(197, 160, 89, 0.6);
+    filter: brightness(1.1);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 1.5px solid var(--glass-border);
+    color: var(--text-main);
+    box-shadow: none;
+}
+
+.btn-secondary:hover {
+    border-color: var(--primary);
+    background: rgba(197, 160, 89, 0.05);
+    color: var(--primary);
+}
+
+.error-msg {
+    color: #ff4d4d;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    height: 1.5rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s;
+}
+
+.error-msg.visible {
+    opacity: 1;
+    transform: translateY(0);
+    animation: shake 0.4s ease-in-out;
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+/* For Options/Settings Page */
+.settings-container {
+    max-width: 850px;
+    padding: 4rem 5rem;
+}
+
+.input-field {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--glass-border);
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+    transition: all 0.3s;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(197, 160, 89, 0.2);
+}
+
+/* Toggle Switch Styling */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #1e293b;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: var(--sea-green);
+    box-shadow: 0 0 20px rgba(197, 160, 89, 0.2);
+}
+
+#google-signin-container h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(197, 160, 89, 0.3);
+}
+
+#backup-code-display {
+    animation: fadeInScale 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+#forgot-passcode-link:hover {
+    opacity: 1 !important;
+    color: var(--primary) !important;
+    text-shadow: 0 0 8px rgba(197, 160, 89, 0.5);
+}
+
+#backup-unlock-btn:hover {
+    background: var(--primary) !important;
+    color: #0a110d !important;
+}
+
+/* --- Premium Micro-Interactions --- */
+
+@keyframes pulseGlow {
+    0% {
+        filter: drop-shadow(0 0 10px rgba(197, 160, 89, 0.2));
+        transform: scale(1);
+    }
+
+    50% {
+        filter: drop-shadow(0 0 30px rgba(197, 160, 89, 0.9));
+        transform: scale(1.05);
+    }
+
+    100% {
+        filter: drop-shadow(0 0 10px rgba(197, 160, 89, 0.2));
+        transform: scale(1);
+    }
+}
+
+.lock-icon-anim {
+    animation: pulseGlow 3.5s infinite ease-in-out;
+}
+
+@keyframes errorShake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: translateX(-8px);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: translateX(8px);
+    }
+}
+
+.error-shake {
+    animation: errorShake 0.5s cubic-bezier(.36, .07, .19, .97) both;
+    border-color: rgba(255, 77, 77, 0.8) !important;
+    box-shadow: inset 0 0 20px rgba(255, 77, 77, 0.2), 0 0 30px rgba(255, 77, 77, 0.4) !important;
+}
+
+@keyframes typePop {
+    0% {
+        transform: translateY(-4px) scale(1.0);
+        background: #1a231f;
+        box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.6);
+    }
+
+    30% {
+        transform: translateY(-10px) scale(1.2);
+        background: #c5a059;
+        box-shadow: 0 0 40px #c5a059, inset 0 0 10px #fff;
+        border-color: #ffd700;
+        color: #050a08;
+        text-shadow: 0 0 8px #fff;
+    }
+
+    100% {
+        transform: translateY(-4px) scale(1.0);
+        background: #23302a;
+        box-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
+        color: #c5a059;
+    }
+}
+
+.type-pop {
+    animation: typePop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* --- Creator Badge --- */
+.creator-badge {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 2rem;
+    background: rgba(10, 17, 13, 0.7);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    padding: 1rem;
+    border-radius: 1.5rem;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-family: 'Outfit', sans-serif;
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    text-align: center;
+}
+
+.creator-avatar {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    border: 2px solid var(--primary);
+    object-fit: cover;
+    box-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
+    transition: all 0.4s ease;
+}
+
+.creator-badge span {
+    color: #c5a059;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    font-style: italic;
+}
+
+.creator-badge:hover {
+    background: rgba(10, 17, 13, 1);
+    border-color: #ffd700;
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(197, 160, 89, 0.2);
+}
+
+.creator-badge:hover .creator-avatar {
+    transform: rotate(5deg) scale(1.1);
+    box-shadow: 0 0 25px rgba(197, 160, 89, 0.7);
+}
+
+
+/* Loading Spinner for Real Email Sending */
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(0, 0, 0, 0.11);
+    border-radius: 50%;
+    border-top-color: #050a08;
+    animation: spin 1s ease-in-out infinite;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* --- THE BETTERMENT UPDATE --- */
+
+/* Glass Container Reflection Sweep */
+.container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(110deg, transparent 40%, rgba(197, 160, 89, 0.08) 50%, transparent 60%);
+    transform: skewX(-20deg);
+    animation: reflectionSweep 12s infinite ease-in-out;
+    pointer-events: none;
+    z-index: 5;
+    border-radius: 2.5rem;
+}
+
+@keyframes reflectionSweep {
+    0% { left: -150%; }
+    100% { left: 150%; }
+}
+
+/* Golden Floating Particles (Dust) */
+.particle {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    background: #c5a059;
+    border-radius: 50%;
+    filter: blur(0.5px);
+    z-index: 3;
+    pointer-events: none;
+    opacity: 0.15;
+    animation: driftUp 25s infinite linear;
+}
+
+@keyframes driftUp {
+    0% { transform: translateY(100vh) translateX(0) scale(1); opacity: 0; }
+    20% { opacity: 0.4; }
+    80% { opacity: 0.4; }
+    100% { transform: translateY(-100px) translateX(100px) scale(0.5); opacity: 0; }
+}
+
+/* Next-Level Focus State */
+.digit-input:focus {
+    outline: none;
+    border-color: #ffd700 !important;
+    background: #23302a;
+    box-shadow: 0 0 40px rgba(197, 160, 89, 0.6), inset 0 0 15px rgba(197, 160, 89, 0.3);
+    transform: translateY(-12px) scale(1.1); /* Super lift */
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 50;
+}
+
+/* --- Authenticated Profile Status --- */
+#linked-account-status .glass-panel {
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: top center;
+}
+
+#linked-account-status:hover .glass-panel {
+    border-color: var(--primary);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 25px rgba(197, 160, 89, 0.15);
+    background: rgba(197, 160, 89, 0.06);
+}
+
+#user-avatar {
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#linked-account-status:hover #user-avatar {
+    transform: scale(1.1) rotate(3deg);
+}
+
+@keyframes profileEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+        filter: blur(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+#linked-account-status {
+    animation: profileEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+/* ============================================================
+   CUSTOM LOCK SCREEN THEMES
+   ============================================================ */
+
+/* ============================================================
+   CUSTOM LOCK SCREEN & OPTIONS THEMES
+   ============================================================ */
+
+/* 0. Luxury Gold Theme */
+body.theme-gold {
+    --primary: #c5a059 !important;
+    --primary-hover: #d4af37 !important;
+    --bg-dark: #0a110d !important;
+    --card-bg: rgba(10, 17, 13, 0.85) !important;
+    --text-main: #f1f5f9 !important;
+    --text-muted: #94a3b8 !important;
+    --glass-border: rgba(197, 160, 89, 0.2) !important;
+    background: #050a08 !important;
+    background-image:
+        radial-gradient(at 0% 0%, hsla(158, 33%, 20%, 1) 0, transparent 50%),
+        radial-gradient(at 50% 0%, hsla(43, 40%, 40%, 0.3) 0, transparent 50%),
+        radial-gradient(at 100% 0%, hsla(158, 33%, 20%, 1) 0, transparent 50%),
+        radial-gradient(at 0% 50%, hsla(43, 40%, 40%, 0.3) 0, transparent 50%),
+        radial-gradient(at 50% 50%, hsla(158, 33%, 15%, 1) 0, transparent 50%),
+        radial-gradient(at 100% 50%, hsla(43, 40%, 40%, 0.3) 0, transparent 50%),
+        radial-gradient(at 0% 100%, hsla(158, 33%, 20%, 1) 0, transparent 50%),
+        radial-gradient(at 50% 100%, hsla(43, 40%, 40%, 0.3) 0, transparent 50%),
+        radial-gradient(at 100% 100%, hsla(158, 33%, 20%, 1) 0, transparent 50%) !important;
+    background-size: 200% 200% !important;
+    animation: meshGradient 20s ease infinite !important;
+    font-family: 'Outfit', sans-serif !important;
+}
+body.theme-gold .glow-orb,
+body.theme-gold .gold-streak {
+    display: block !important;
+}
+body.theme-gold h1,
+body.theme-gold h2,
+body.theme-gold h3 {
+    color: #c5a059 !important;
+    text-shadow: none !important;
+}
+
+/* 1. Cyberpunk Matrix Theme */
+body.theme-matrix::before, body.theme-oled::before, body.theme-apple::before, body.theme-blossom::before, body.theme-orange::before, body.theme-sunset::before { display: none !important; }
+
+body.theme-matrix {
+    --primary: #00ff66 !important;
+    --primary-hover: #33ff88 !important;
+    --bg-dark: #010803 !important;
+    --card-bg: rgba(2, 16, 7, 0.95) !important;
+    --text-main: #00ff66 !important;
+    --text-muted: #52a36b !important;
+    --glass-border: rgba(0, 255, 102, 0.4) !important;
+    background: #010803 !important;
+    background-image: none !important;
+    animation: none !important;
+    font-family: 'Courier New', monospace !important;
+}
+body.theme-matrix .glow-orb,
+body.theme-matrix .gold-streak {
+    display: none !important;
+}
+body.theme-matrix h1,
+body.theme-matrix h2,
+body.theme-matrix h3 {
+    color: #00ff66 !important;
+    font-family: 'Courier New', monospace !important;
+    text-shadow: 0 0 10px rgba(0, 255, 102, 0.6) !important;
+}
+body.theme-matrix p,
+body.theme-matrix label,
+body.theme-matrix span {
+    font-family: 'Courier New', monospace !important;
+}
+body.theme-matrix .glass-panel,
+body.theme-matrix .container {
+    background: rgba(2, 16, 7, 0.95) !important;
+    border: 1px solid rgba(0, 255, 102, 0.4) !important;
+    box-shadow: 0 0 30px rgba(0, 255, 102, 0.25), inset 0 0 15px rgba(0, 255, 102, 0.08) !important;
+}
+body.theme-matrix .digit-input,
+body.theme-matrix .input-field {
+    border-color: rgba(0, 255, 102, 0.5) !important;
+    color: #00ff66 !important;
+    box-shadow: 0 0 12px rgba(0, 255, 102, 0.25) !important;
+    background: rgba(0, 20, 10, 0.85) !important;
+    font-family: 'Courier New', monospace !important;
+}
+body.theme-matrix .btn {
+    background: linear-gradient(135deg, #00ff66, #009933) !important;
+    color: #010803 !important;
+    font-weight: 800 !important;
+    border: 1px solid #00ff66 !important;
+    box-shadow: 0 0 20px rgba(0, 255, 102, 0.45) !important;
+    font-family: 'Courier New', monospace !important;
+}
+body.theme-matrix .lock-icon-anim path,
+body.theme-matrix svg:not(.theme-icon) path {
+    fill: #00ff66 !important;
+}
+
+/* 2. OLED Pure Dark Theme */
+body.theme-oled {
+    --primary: #ffffff !important;
+    --primary-hover: #e2e8f0 !important;
+    --bg-dark: #000000 !important;
+    --card-bg: #000000 !important;
+    --text-main: #ffffff !important;
+    --text-muted: #71717a !important;
+    --glass-border: #27272a !important;
+    background: #000000 !important;
+    background-image: none !important;
+    animation: none !important;
+}
+body.theme-oled .glow-orb,
+body.theme-oled .gold-streak {
+    display: none !important;
+}
+body.theme-oled h1,
+body.theme-oled h2,
+body.theme-oled h3 {
+    color: #ffffff !important;
+}
+body.theme-oled .glass-panel,
+body.theme-oled .container {
+    background: #09090b !important;
+    border-color: #27272a !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+}
+body.theme-oled .digit-input,
+body.theme-oled .input-field {
+    background: #121214 !important;
+    border-color: #27272a !important;
+    color: #ffffff !important;
+    box-shadow: none !important;
+}
+body.theme-oled .btn {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid #ffffff !important;
+    font-weight: 700 !important;
+}
+body.theme-oled .lock-icon-anim path,
+body.theme-oled svg:not(.theme-icon) path {
+    fill: #ffffff !important;
+}
+
+/* 3. Minimalist Apple Glass Theme */
+body.theme-apple {
+    --primary: #0071e3 !important;
+    --primary-hover: #0077ed !important;
+    --bg-dark: #0b0f19 !important;
+    --card-bg: rgba(255, 255, 255, 0.06) !important;
+    --text-main: #f5f5f7 !important;
+    --text-muted: #94a3b8 !important;
+    --glass-border: rgba(255, 255, 255, 0.18) !important;
+    background: #0b0f19 !important;
+    background-image: radial-gradient(circle at 50% 25%, #1e293b 0%, #07090e 100%) !important;
+    animation: none !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+body.theme-apple .glow-orb,
+body.theme-apple .gold-streak {
+    display: none !important;
+}
+body.theme-apple h1,
+body.theme-apple h2,
+body.theme-apple h3 {
+    color: #f5f5f7 !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+body.theme-apple .glass-panel,
+body.theme-apple .container {
+    backdrop-filter: blur(50px) saturate(190%) !important;
+    border-radius: 1.5rem !important;
+    border-color: rgba(255, 255, 255, 0.16) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5) !important;
+}
+body.theme-apple .digit-input,
+body.theme-apple .input-field {
+    border-radius: 0.8rem !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.18) !important;
+    color: #ffffff !important;
+}
+body.theme-apple .btn {
+    border-radius: 2rem !important;
+    background: #0071e3 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 15px rgba(0, 113, 227, 0.4) !important;
+    border: none !important;
+}
+body.theme-apple .lock-icon-anim path,
+body.theme-apple svg:not(.theme-icon) path {
+    fill: #0071e3 !important;
+}
+
+/* Matrix Rain Canvas */
+#matrix-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+    display: none;
+}
+
+/* 4. Blossom Pink Theme */
+body.theme-blossom {
+    --primary: #f472b6 !important;
+    --primary-hover: #ec4899 !important;
+    --bg-dark: #1f0714 !important;
+    --card-bg: rgba(35, 10, 24, 0.88) !important;
+    --text-main: #fdf2f8 !important;
+    --text-muted: #f4b5d4 !important;
+    --glass-border: rgba(244, 114, 182, 0.3) !important;
+    background: #180510 !important;
+    background-image: 
+        radial-gradient(at 0% 0%, hsla(330, 80%, 25%, 0.8) 0, transparent 50%),
+        radial-gradient(at 100% 0%, hsla(350, 70%, 30%, 0.7) 0, transparent 50%),
+        radial-gradient(at 50% 50%, hsla(320, 60%, 18%, 0.8) 0, transparent 50%),
+        radial-gradient(at 0% 100%, hsla(340, 75%, 22%, 0.8) 0, transparent 50%),
+        radial-gradient(at 100% 100%, hsla(315, 80%, 28%, 0.8) 0, transparent 50%) !important;
+    background-size: 180% 180% !important;
+    animation: blossomFlow 18s ease infinite !important;
+    font-family: 'Outfit', sans-serif !important;
+}
+@keyframes blossomFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+body.theme-blossom .glow-orb#orb-1 {
+    background: radial-gradient(circle, #f472b6 0%, transparent 70%) !important;
+}
+body.theme-blossom .glow-orb#orb-2 {
+    background: radial-gradient(circle, #fb7185 0%, transparent 70%) !important;
+}
+body.theme-blossom .glow-orb#orb-3 {
+    background: radial-gradient(circle, #ec4899 0%, transparent 70%) !important;
+}
+body.theme-blossom .gold-streak {
+    background: radial-gradient(ellipse at center, hsla(330, 95%, 70%, 0.4) 0%, transparent 65%) !important;
+}
+body.theme-blossom h1,
+body.theme-blossom h2,
+body.theme-blossom h3 {
+    color: #f472b6 !important;
+    text-shadow: 0 0 15px rgba(244, 114, 182, 0.4) !important;
+}
+body.theme-blossom .glass-panel,
+body.theme-blossom .container {
+    background: rgba(30, 8, 20, 0.88) !important;
+    border-color: rgba(244, 114, 182, 0.35) !important;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 25px rgba(244, 114, 182, 0.2) !important;
+}
+body.theme-blossom .digit-input,
+body.theme-blossom .input-field {
+    background: #2a0d1d !important;
+    border-color: rgba(244, 114, 182, 0.4) !important;
+    color: #f472b6 !important;
+}
+body.theme-blossom .digit-input:focus {
+    border-color: #f472b6 !important;
+    box-shadow: 0 0 20px rgba(244, 114, 182, 0.6) !important;
+}
+body.theme-blossom .btn {
+    background: linear-gradient(135deg, #f472b6, #db2777) !important;
+    color: #ffffff !important;
+    box-shadow: 0 10px 30px rgba(236, 72, 153, 0.4) !important;
+}
+body.theme-blossom .lock-icon-anim path,
+body.theme-blossom svg:not(.theme-icon) path {
+    fill: #f472b6 !important;
+}
+
+/* 5. Orange Animated Theme */
+body.theme-orange {
+    --primary: #f97316 !important;
+    --primary-hover: #ea580c !important;
+    --bg-dark: #1c0c04 !important;
+    --card-bg: rgba(32, 14, 5, 0.88) !important;
+    --text-main: #fff7ed !important;
+    --text-muted: #fdba74 !important;
+    --glass-border: rgba(249, 115, 22, 0.35) !important;
+    background: #140702 !important;
+    background-image:
+        radial-gradient(at 10% 20%, hsla(25, 95%, 45%, 0.7) 0, transparent 45%),
+        radial-gradient(at 90% 15%, hsla(35, 90%, 50%, 0.65) 0, transparent 50%),
+        radial-gradient(at 50% 60%, hsla(15, 90%, 40%, 0.7) 0, transparent 55%),
+        radial-gradient(at 20% 90%, hsla(30, 95%, 42%, 0.65) 0, transparent 50%),
+        radial-gradient(at 85% 85%, hsla(10, 85%, 48%, 0.7) 0, transparent 50%) !important;
+    background-size: 220% 220% !important;
+    animation: orangePulse 14s ease-in-out infinite alternate !important;
+    font-family: 'Outfit', sans-serif !important;
+}
+@keyframes orangePulse {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 50% 0%; }
+}
+body.theme-orange .glow-orb#orb-1 {
+    background: radial-gradient(circle, #f97316 0%, transparent 70%) !important;
+}
+body.theme-orange .glow-orb#orb-2 {
+    background: radial-gradient(circle, #ea580c 0%, transparent 70%) !important;
+}
+body.theme-orange .glow-orb#orb-3 {
+    background: radial-gradient(circle, #fb923c 0%, transparent 70%) !important;
+}
+body.theme-orange .gold-streak {
+    background: radial-gradient(ellipse at center, hsla(25, 95%, 60%, 0.45) 0%, transparent 65%) !important;
+}
+body.theme-orange h1,
+body.theme-orange h2,
+body.theme-orange h3 {
+    color: #f97316 !important;
+    text-shadow: 0 0 15px rgba(249, 115, 22, 0.5) !important;
+}
+body.theme-orange .glass-panel,
+body.theme-orange .container {
+    background: rgba(30, 12, 4, 0.9) !important;
+    border-color: rgba(249, 115, 22, 0.4) !important;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(249, 115, 22, 0.25) !important;
+}
+body.theme-orange .digit-input,
+body.theme-orange .input-field {
+    background: #2a1106 !important;
+    border-color: rgba(249, 115, 22, 0.45) !important;
+    color: #f97316 !important;
+}
+body.theme-orange .digit-input:focus {
+    border-color: #f97316 !important;
+    box-shadow: 0 0 25px rgba(249, 115, 22, 0.7) !important;
+}
+body.theme-orange .btn {
+    background: linear-gradient(135deg, #fb923c, #ea580c) !important;
+    color: #110500 !important;
+    font-weight: 800 !important;
+    box-shadow: 0 10px 30px rgba(234, 88, 12, 0.5) !important;
+}
+body.theme-orange .lock-icon-anim path,
+body.theme-orange svg:not(.theme-icon) path {
+    fill: #f97316 !important;
+}
+
+/* 6. Yellow Sunset Theme */
+body.theme-sunset {
+    --primary: #eab308 !important;
+    --primary-hover: #ca8a04 !important;
+    --bg-dark: #1b1302 !important;
+    --card-bg: rgba(30, 20, 4, 0.88) !important;
+    --text-main: #fefce8 !important;
+    --text-muted: #fef08a !important;
+    --glass-border: rgba(234, 179, 8, 0.35) !important;
+    background: #150d03 !important;
+    background-image: 
+        radial-gradient(ellipse at 50% 0%, hsla(45, 95%, 48%, 0.6) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 40%, hsla(25, 90%, 48%, 0.55) 0%, transparent 50%),
+        radial-gradient(ellipse at 20% 70%, hsla(350, 75%, 35%, 0.5) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 100%, hsla(280, 50%, 20%, 0.6) 0%, transparent 65%) !important;
+    background-size: 150% 150% !important;
+    animation: sunsetGaze 20s ease-in-out infinite alternate !important;
+    font-family: 'Outfit', sans-serif !important;
+}
+@keyframes sunsetGaze {
+    0% { background-position: 50% 0%; }
+    100% { background-position: 50% 100%; }
+}
+body.theme-sunset .glow-orb#orb-1 {
+    background: radial-gradient(circle, #eab308 0%, transparent 70%) !important;
+}
+body.theme-sunset .glow-orb#orb-2 {
+    background: radial-gradient(circle, #f97316 0%, transparent 70%) !important;
+}
+body.theme-sunset .glow-orb#orb-3 {
+    background: radial-gradient(circle, #dc2626 0%, transparent 70%) !important;
+}
+body.theme-sunset .gold-streak {
+    background: radial-gradient(ellipse at center, hsla(45, 95%, 55%, 0.45) 0%, transparent 65%) !important;
+}
+body.theme-sunset h1,
+body.theme-sunset h2,
+body.theme-sunset h3 {
+    color: #facc15 !important;
+    text-shadow: 0 0 15px rgba(250, 204, 21, 0.4) !important;
+}
+body.theme-sunset .glass-panel,
+body.theme-sunset .container {
+    background: rgba(28, 18, 4, 0.9) !important;
+    border-color: rgba(234, 179, 8, 0.35) !important;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 25px rgba(234, 179, 8, 0.2) !important;
+}
+body.theme-sunset .digit-input,
+body.theme-sunset .input-field {
+    background: #261703 !important;
+    border-color: rgba(234, 179, 8, 0.45) !important;
+    color: #facc15 !important;
+}
+body.theme-sunset .digit-input:focus {
+    border-color: #facc15 !important;
+    box-shadow: 0 0 20px rgba(250, 204, 21, 0.6) !important;
+}
+body.theme-sunset .btn {
+    background: linear-gradient(135deg, #facc15, #ea580c) !important;
+    color: #120701 !important;
+    font-weight: 800 !important;
+    box-shadow: 0 10px 30px rgba(234, 179, 8, 0.4) !important;
+}
+body.theme-sunset .lock-icon-anim path,
+body.theme-sunset svg:not(.theme-icon) path {
+    fill: #facc15 !important;
+}
+
+/* Theme Picker Cards */
+.theme-picker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(105px, 1fr));
+    gap: 0.8rem;
+    margin: 1rem 0;
+}
+.theme-card {
+    border: 2px solid var(--glass-border);
+    border-radius: 0.8rem;
+    padding: 0.8rem 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    background: rgba(0,0,0,0.3);
+}
+.theme-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary);
+}
+.theme-card.active {
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
+    background: rgba(197, 160, 89, 0.08);
+}
+.theme-preview-dot {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin: 0 auto 0.5rem;
+    border: 2px solid rgba(255,255,255,0.3);
+}
+
+/* Intruder Forensic Card */
+.forensic-card {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid var(--glass-border);
+    border-radius: 0.8rem;
+    padding: 1rem;
+    margin-bottom: 0.8rem;
+    text-align: left;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+.forensic-thumb {
+    width: 70px;
+    height: 70px;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    border: 1px solid rgba(239, 68, 68, 0.5);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+/* =========================================================
+   MULTILINGUAL LANGUAGE SELECTOR & RTL SUPPORT
+   ========================================================= */
+.lang-selector-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+@media (max-width: 600px) {
+    .lang-selector-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+.lang-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 0.85rem 0.5rem;
+    border-radius: 0.85rem;
+    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text-main);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+.lang-btn:hover {
+    border-color: var(--primary);
+    background: rgba(197, 160, 89, 0.12);
+    transform: translateY(-2px);
+}
+.lang-btn.active {
+    border-color: var(--primary) !important;
+    background: rgba(197, 160, 89, 0.2) !important;
+    box-shadow: 0 0 15px rgba(197, 160, 89, 0.35) !important;
+    color: var(--primary) !important;
+    font-weight: 700 !important;
+}
+.lang-btn .lang-flag {
+    font-size: 1.5rem;
+    line-height: 1;
+}
+.lang-btn .lang-name {
+    font-weight: 600;
+}
+.lang-btn[data-lang="ur"] .lang-name,
+.lang-pill[data-lang="ur"] {
+    font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', 'Urdu Typesetting', serif !important;
+}
+.lang-btn[data-lang="ar"] .lang-name,
+.lang-pill[data-lang="ar"] {
+    font-family: 'Scheherazade New', 'Amiri', 'Traditional Arabic', serif !important;
+}
+
+/* Lock Screen Language Bar */
+.lock-lang-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    z-index: 10;
+    position: relative;
+}
+.lang-pill {
+    padding: 0.4rem 0.85rem;
+    border-radius: 2rem;
+    border: 1px solid var(--glass-border);
+    background: rgba(0, 0, 0, 0.4);
+    color: var(--text-muted);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(10px);
+    font-family: inherit;
+}
+.lang-pill:hover {
+    color: var(--text-main);
+    border-color: var(--primary);
+    transform: translateY(-1px);
+}
+.lang-pill.active {
+    color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    background: rgba(197, 160, 89, 0.2) !important;
+    box-shadow: 0 0 10px rgba(197, 160, 89, 0.3) !important;
+}
+
+/* RTL Layout Styles for Urdu & Arabic */
+body.rtl-layout {
+    direction: rtl;
+    text-align: right;
+}
+body.rtl-layout .passcode-container,
+body.rtl-layout .digit-input,
+body.rtl-layout .stealth-input,
+body.rtl-layout .poison-input {
+    direction: ltr !important;
+    text-align: center !important;
+}
+body.rtl-layout .passcode-container {
+    flex-direction: row !important;
+}
+body.rtl-layout input[type="number"],
+body.rtl-layout input[type="password"] {
+    direction: ltr !important;
+    text-align: center !important;
+}
+body.rtl-layout #totp-lock-input,
+body.rtl-layout #totp-test-input,
+body.rtl-layout #twofa-code-input,
+body.rtl-layout #backup-input,
+body.rtl-layout #totp-secret-key,
+body.rtl-layout #code-1,
+body.rtl-layout #code-2 {
+    direction: ltr !important;
+    text-align: center !important;
+    font-family: monospace !important;
+}
+body.rtl-layout .container.settings-container h1,
+body.rtl-layout .container.settings-container > p,
+body.rtl-layout .header h1,
+body.rtl-layout .header p,
+body.rtl-layout .lock-lang-bar,
+body.rtl-layout .theme-picker-grid,
+body.rtl-layout .lang-selector-grid {
+    text-align: center;
+}
+body.rtl-layout ul {
+    padding-right: 1.5rem;
+    padding-left: 0;
+}
+body.rtl-layout .creator-badge {
+    left: auto;
+    right: 2rem;
+    direction: rtl;
+}
+
+
+
+/* ==========================================================================
+   NASTALIQ & ARABIC CALLIGRAPHIC TYPOGRAPHY
+   ========================================================================== */
+
+/* Urdu - Authentic Noto Nastaliq Urdu */
+body.lang-ur {
+    font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', 'Urdu Typesetting', 'Nafees Web Naskh', serif !important;
+    line-height: 2.4 !important;
+    letter-spacing: 0 !important;
+}
+
+body.lang-ur h1, 
+body.lang-ur h2, 
+body.lang-ur h3, 
+body.lang-ur h4, 
+body.lang-ur p, 
+body.lang-ur label, 
+body.lang-ur span:not(.badge):not(.tag), 
+body.lang-ur li, 
+body.lang-ur small,
+body.lang-ur .card-title,
+body.lang-ur .section-title,
+body.lang-ur .subtitle,
+body.lang-ur .lead,
+body.lang-ur .btn-text,
+body.lang-ur a {
+    font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', 'Urdu Typesetting', 'Nafees Web Naskh', serif !important;
+    line-height: 2.3 !important;
+}
+
+body.lang-ur button:not(.digit-btn) {
+    font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', 'Urdu Typesetting', 'Nafees Web Naskh', serif !important;
+    line-height: 2.2 !important;
+}
+
+body.lang-ur h1 {
+    font-size: 2.6rem !important;
+    line-height: 2.0 !important;
+}
+
+body.lang-ur .card-title {
+    font-size: 1.25rem !important;
+}
+
+/* Arabic - Scheherazade New / Amiri Traditional Calligraphy */
+body.lang-ar {
+    font-family: 'Scheherazade New', 'Amiri', 'Traditional Arabic', serif !important;
+    line-height: 2.2 !important;
+    letter-spacing: 0 !important;
+}
+
+body.lang-ar h1, 
+body.lang-ar h2, 
+body.lang-ar h3, 
+body.lang-ar h4, 
+body.lang-ar p, 
+body.lang-ar label, 
+body.lang-ar span:not(.badge):not(.tag), 
+body.lang-ar li, 
+body.lang-ar small,
+body.lang-ar .card-title,
+body.lang-ar .section-title,
+body.lang-ar .subtitle,
+body.lang-ar .lead,
+body.lang-ar .btn-text,
+body.lang-ar a {
+    font-family: 'Scheherazade New', 'Amiri', 'Traditional Arabic', serif !important;
+    line-height: 2.1 !important;
+}
+
+body.lang-ar button:not(.digit-btn) {
+    font-family: 'Scheherazade New', 'Amiri', 'Traditional Arabic', serif !important;
+    line-height: 2.0 !important;
+}
+
+body.lang-ar h1 {
+    font-size: 2.8rem !important;
+    line-height: 1.9 !important;
+}
+
+/* Maintain strict monospace & centered numbers for passcode digits & cryptographic tokens */
+body.lang-ur .passcode-container input,
+body.lang-ur .digit-input,
+body.lang-ur .stealth-input,
+body.lang-ur .poison-input,
+body.lang-ur #totp-lock-input,
+body.lang-ur #totp-test-input,
+body.lang-ur #twofa-code-input,
+body.lang-ur #backup-input,
+body.lang-ur #totp-secret-key,
+body.lang-ur input[type="password"],
+body.lang-ur input[type="number"],
+body.lang-ar .passcode-container input,
+body.lang-ar .digit-input,
+body.lang-ar .stealth-input,
+body.lang-ar .poison-input,
+body.lang-ar #totp-lock-input,
+body.lang-ar #totp-test-input,
+body.lang-ar #twofa-code-input,
+body.lang-ar #backup-input,
+body.lang-ar #totp-secret-key,
+body.lang-ar input[type="password"],
+body.lang-ar input[type="number"] {
+    font-family: 'Courier New', monospace !important;
+    line-height: normal !important;
+    letter-spacing: 0.15em !important;
+    direction: ltr !important;
+    text-align: center !important;
+}

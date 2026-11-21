@@ -1,0 +1,86 @@
+{
+    "manifest_version": 3,
+    "oauth2": {
+        "client_id": "699528092509-ah6i6n3nfc5cr52ac5v92rg0to5jcub7.apps.googleusercontent.com",
+        "scopes": [
+            "openid",
+            "email",
+            "profile"
+        ]
+    },
+    "name": "Profile Lock Pro",
+    "version": "1.0",
+    "description": "Lock your Chrome profile with a 5-digit passcode.",
+    "permissions": [
+        "storage",
+        "tabs",
+        "windows",
+        "webNavigation",
+        "scripting",
+        "idle",
+        "downloads",
+        "identity",
+        "identity.email",
+        "alarms",
+        "browsingData",
+        "management",
+        "notifications",
+        "offscreen",
+        "contextMenus",
+        "tabGroups"
+    ],
+    "commands": {
+        "quick_lock": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+L",
+                "mac": "Command+Shift+L"
+            },
+            "description": "Instantly lock the browser profile."
+        }
+    },
+    "icons": {
+        "128": "H_icon.png"
+    },
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": {
+            "128": "H_icon.png"
+        }
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "options_page": "options.html",
+    "web_accessible_resources": [
+        {
+            "resources": [
+                "H_icon.png",
+                "lock.html",
+                "locked.html",
+                "ransomware.html",
+                "style.css",
+                "IMG_20230515_202833.jpg",
+                "face-api.min.js",
+                "totp.js",
+                "i18n.js",
+                "models/*",
+                "self_destruct_success.html",
+                "self_destruct_success.js"
+            ],
+            "matches": [
+                "<all_urls>"
+            ]
+        }
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "run_at": "document_start"
+        }
+    ]
+}

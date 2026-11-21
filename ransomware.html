@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRITICAL SYSTEM ERROR</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@700;900&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #020a05;
+            color: #ff1a1a;
+            font-family: 'Share Tech Mono', monospace;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            cursor: none;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* Animated scan lines */
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 255, 65, 0.03) 2px,
+                rgba(0, 255, 65, 0.03) 4px
+            );
+            pointer-events: none;
+            z-index: 1000;
+            animation: scanMove 8s linear infinite;
+        }
+
+        @keyframes scanMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 200px; }
+        }
+
+        /* Flickering red/green overlay */
+        .flicker-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            animation: flickerBg 0.15s infinite;
+        }
+
+        @keyframes flickerBg {
+            0%, 100% { background: rgba(255, 0, 0, 0.02); }
+            25% { background: rgba(0, 255, 0, 0.01); }
+            50% { background: rgba(255, 0, 0, 0.04); }
+            75% { background: transparent; }
+        }
+
+        /* Matrix rain background */
+        .matrix-rain {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            opacity: 0.15;
+        }
+
+        /* Main container */
+        .ransomware-container {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* Glitch skull icon */
+        .skull-icon {
+            font-size: 8rem;
+            animation: glitchSkull 2s infinite;
+            text-shadow: 0 0 30px rgba(255, 0, 0, 0.8), 0 0 60px rgba(255, 0, 0, 0.4);
+            margin-bottom: 1rem;
+        }
+
+        @keyframes glitchSkull {
+            0%, 90%, 100% { transform: translate(0, 0); filter: hue-rotate(0deg); }
+            92% { transform: translate(-5px, 3px); filter: hue-rotate(90deg); }
+            94% { transform: translate(5px, -3px); filter: hue-rotate(-90deg); }
+            96% { transform: translate(-3px, -5px); filter: hue-rotate(180deg); }
+            98% { transform: translate(3px, 5px); filter: hue-rotate(0deg); }
+        }
+
+        /* Main title with glitch */
+        .main-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #ff1a1a;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            text-shadow: 
+                0 0 10px #ff0000,
+                0 0 40px #ff0000,
+                0 0 80px #ff0000,
+                3px 3px 0 #00ff41,
+                -3px -3px 0 #0066ff;
+            animation: glitchTitle 3s infinite;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .main-title::before,
+        .main-title::after {
+            content: 'SYSTEM ENCRYPTED';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+        }
+
+        .main-title::before {
+            color: #00ff41;
+            animation: glitchClip1 2s infinite linear alternate-reverse;
+            clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+            transform: translate(-3px, 0);
+        }
+
+        .main-title::after {
+            color: #0066ff;
+            animation: glitchClip2 2s infinite linear alternate-reverse;
+            clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+            transform: translate(3px, 0);
+        }
+
+        @keyframes glitchTitle {
+            0%, 85%, 100% { transform: skew(0deg); }
+            87% { transform: skew(-2deg); }
+            89% { transform: skew(3deg); }
+            91% { transform: skew(-1deg); }
+        }
+
+        @keyframes glitchClip1 {
+            0% { clip-path: polygon(0 15%, 100% 15%, 100% 30%, 0 30%); transform: translate(-3px); }
+            20% { clip-path: polygon(0 45%, 100% 45%, 100% 55%, 0 55%); transform: translate(3px); }
+            40% { clip-path: polygon(0 0, 100% 0, 100% 10%, 0 10%); transform: translate(-2px); }
+            60% { clip-path: polygon(0 70%, 100% 70%, 100% 85%, 0 85%); transform: translate(2px); }
+            80% { clip-path: polygon(0 30%, 100% 30%, 100% 45%, 0 45%); transform: translate(-1px); }
+            100% { clip-path: polygon(0 55%, 100% 55%, 100% 70%, 0 70%); transform: translate(1px); }
+        }
+
+        @keyframes glitchClip2 {
+            0% { clip-path: polygon(0 60%, 100% 60%, 100% 75%, 0 75%); transform: translate(2px); }
+            25% { clip-path: polygon(0 10%, 100% 10%, 100% 25%, 0 25%); transform: translate(-2px); }
+            50% { clip-path: polygon(0 80%, 100% 80%, 100% 95%, 0 95%); transform: translate(3px); }
+            75% { clip-path: polygon(0 35%, 100% 35%, 100% 50%, 0 50%); transform: translate(-3px); }
+            100% { clip-path: polygon(0 5%, 100% 5%, 100% 20%, 0 20%); transform: translate(1px); }
+        }
+
+        /* Warning message */
+        .warning-text {
+            font-size: 1.1rem;
+            color: #00ff41;
+            max-width: 700px;
+            line-height: 1.8;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+            margin-bottom: 2rem;
+            animation: textPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes textPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .warning-text .highlight {
+            color: #ff1a1a;
+            font-weight: bold;
+            text-shadow: 0 0 15px rgba(255, 0, 0, 0.8);
+        }
+
+        /* Countdown timer */
+        .countdown-box {
+            background: rgba(255, 0, 0, 0.08);
+            border: 2px solid #ff1a1a;
+            border-radius: 4px;
+            padding: 1.5rem 3rem;
+            margin: 1.5rem 0;
+            animation: borderPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes borderPulse {
+            0%, 100% { border-color: #ff1a1a; box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); }
+            50% { border-color: #00ff41; box-shadow: 0 0 30px rgba(0, 255, 65, 0.3); }
+        }
+
+        .countdown-label {
+            font-size: 0.8rem;
+            color: #888;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .countdown-timer {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            color: #ff1a1a;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+            letter-spacing: 0.2em;
+        }
+
+        /* Fake file list */
+        .file-list {
+            margin-top: 1.5rem;
+            text-align: left;
+            max-width: 500px;
+            font-size: 0.8rem;
+            color: #00ff41;
+            opacity: 0.6;
+            max-height: 120px;
+            overflow: hidden;
+        }
+
+        .file-list div {
+            padding: 2px 0;
+            animation: fileScroll 0.3s ease;
+        }
+
+        @keyframes fileScroll {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Creator badge */
+        .creator-badge {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.85);
+            border: 1px solid rgba(255, 26, 26, 0.3);
+            padding: 8px 16px;
+            border-radius: 30px;
+            z-index: 2000;
+            font-size: 0.75rem;
+            color: #888;
+            backdrop-filter: blur(10px);
+        }
+
+        .creator-badge img {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 26, 26, 0.5);
+        }
+
+        .creator-badge span {
+            color: #ff1a1a;
+            font-weight: bold;
+        }
+
+        /* Hex data flowing */
+        .hex-data {
+            position: fixed;
+            bottom: 60px;
+            left: 0;
+            width: 100%;
+            font-size: 0.65rem;
+            color: rgba(0, 255, 65, 0.15);
+            white-space: nowrap;
+            overflow: hidden;
+            z-index: 5;
+            animation: hexScroll 20s linear infinite;
+        }
+
+        @keyframes hexScroll {
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
+        }
+
+        /* Pulsing red border on entire screen */
+        .screen-border {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: 4px solid transparent;
+            pointer-events: none;
+            z-index: 998;
+            animation: screenBorderPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes screenBorderPulse {
+            0%, 100% { border-color: rgba(255, 0, 0, 0.6); }
+            50% { border-color: rgba(0, 255, 65, 0.3); }
+        }
+
+        /* Suppress everything */
+        body::selection { background: transparent; }
+    </style>
+    <link rel="icon" type="image/png" href="H_icon.png">
+</head>
+<body>
+    <div class="scanlines"></div>
+    <div class="flicker-overlay"></div>
+    <div class="screen-border"></div>
+    <canvas class="matrix-rain" id="matrixCanvas"></canvas>
+
+    <div class="ransomware-container">
+        <div class="skull-icon">☠</div>
+        <h1 class="main-title">SYSTEM ENCRYPTED</h1>
+        <p class="warning-text">
+            <span class="highlight">⚠ CRITICAL SECURITY BREACH DETECTED ⚠</span><br><br>
+            All files on this device have been encrypted using <span class="highlight">AES-256 military-grade encryption</span>. 
+            Your personal data, saved passwords, documents, and browser session have been <span class="highlight">permanently locked</span>.<br><br>
+            Any attempt to close this window, restart the computer, or tamper with this system will result in 
+            <span class="highlight">immediate and irreversible data destruction</span>.
+        </p>
+
+        <div class="countdown-box">
+            <div class="countdown-label">Time until permanent data destruction</div>
+            <div class="countdown-timer" id="countdown">23:59:59</div>
+        </div>
+
+        <div class="file-list" id="fileList"></div>
+    </div>
+
+    <div class="hex-data" id="hexData"></div>
+
+    <div class="creator-badge">
+        <img src="IMG_20230515_202833.jpg" alt="Abdul Hadi">
+        <div>Made by <span>Abdul Hadi</span></div>
+    </div>
+
+    <script>
+        // ===== MATRIX RAIN =====
+        const canvas = document.getElementById('matrixCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const chars = '0123456789ABCDEFabcdef☠⚠✗✘▓░▒█';
+        const fontSize = 14;
+        const columns = Math.floor(canvas.width / fontSize);
+        const drops = Array(columns).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(2, 10, 5, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.font = fontSize + 'px Share Tech Mono';
+
+            for (let i = 0; i < drops.length; i++) {
+                const char = chars[Math.floor(Math.random() * chars.length)];
+                const x = i * fontSize;
+                const y = drops[i] * fontSize;
+                
+                // Alternate red and green
+                ctx.fillStyle = Math.random() > 0.7 ? '#ff1a1a' : '#00ff41';
+                ctx.fillText(char, x, y);
+
+                if (y > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 40);
+
+        // ===== COUNTDOWN TIMER =====
+        let totalSeconds = 23 * 3600 + 59 * 60 + 59;
+        const countdownEl = document.getElementById('countdown');
+
+        setInterval(() => {
+            totalSeconds--;
+            if (totalSeconds < 0) totalSeconds = 0;
+            const h = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+            const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+            const s = String(totalSeconds % 60).padStart(2, '0');
+            countdownEl.textContent = `${h}:${m}:${s}`;
+        }, 1000);
+
+        // ===== FAKE FILE ENCRYPTION SCROLL =====
+        const fakePaths = [
+            'C:\\Users\\Admin\\Documents\\passwords.xlsx',
+            'C:\\Users\\Admin\\Desktop\\bank_statements.pdf',
+            'C:\\Users\\Admin\\Downloads\\crypto_wallet.dat',
+            'C:\\Users\\Admin\\Pictures\\family_photos\\IMG_2024.jpg',
+            'C:\\Users\\Admin\\AppData\\Local\\Google\\Chrome\\User Data\\Login Data',
+            'C:\\Users\\Admin\\Documents\\tax_returns_2024.pdf',
+            'C:\\Users\\Admin\\Desktop\\work_contract.docx',
+            'C:\\Users\\Admin\\Downloads\\private_keys.pem',
+            'C:\\Users\\Admin\\AppData\\Roaming\\Mozilla\\Firefox\\profiles.ini',
+            'C:\\Users\\Admin\\Documents\\medical_records.pdf',
+            'C:\\Windows\\System32\\config\\SAM',
+            'C:\\Users\\Admin\\Desktop\\resume_final.docx',
+            'C:\\Users\\Admin\\Downloads\\investment_portfolio.xlsx',
+            'C:\\Users\\Admin\\AppData\\Local\\Microsoft\\Edge\\User Data\\Default\\Bookmarks',
+            'C:\\Users\\Admin\\Documents\\insurance_policy.pdf',
+            'C:\\Users\\Admin\\Pictures\\Screenshots\\bank_login.png',
+            'C:\\Users\\Admin\\Desktop\\company_secrets.zip',
+            'C:\\Users\\Admin\\AppData\\Local\\Packages\\Microsoft.Windows.ContentDeliveryManager',
+            'C:\\Users\\Admin\\Downloads\\ssh_keys.tar.gz',
+            'C:\\Users\\Admin\\Documents\\will_and_testament.pdf',
+        ];
+
+        const fileListEl = document.getElementById('fileList');
+        let fileIdx = 0;
+
+        setInterval(() => {
+            const path = fakePaths[fileIdx % fakePaths.length];
+            const status = Math.random() > 0.3 ? '■ ENCRYPTED' : '■ ENCRYPTING...';
+            const div = document.createElement('div');
+            div.textContent = `[${status}] ${path}`;
+            div.style.color = status.includes('ING') ? '#ff1a1a' : '#00ff41';
+            fileListEl.prepend(div);
+            if (fileListEl.children.length > 8) {
+                fileListEl.removeChild(fileListEl.lastChild);
+            }
+            fileIdx++;
+        }, 1200);
+
+        // ===== HEX DATA BAR =====
+        const hexEl = document.getElementById('hexData');
+        let hexStr = '';
+        for (let i = 0; i < 500; i++) {
+            hexStr += Math.floor(Math.random() * 16).toString(16).toUpperCase();
+            if (i % 2 === 1) hexStr += ' ';
+            if (i % 32 === 31) hexStr += '  |  ';
+        }
+        hexEl.textContent = hexStr;
+
+        // ===== SIREN SOUND =====
+        let sirenCtx = null;
+        function playSiren() {
+            try {
+                if (!sirenCtx) sirenCtx = new (window.AudioContext || window.webkitAudioContext)();
+                if (sirenCtx.state === 'suspended') sirenCtx.resume();
+
+                const osc = sirenCtx.createOscillator();
+                const gain = sirenCtx.createGain();
+                osc.type = 'sawtooth';
+                osc.connect(gain);
+                gain.connect(sirenCtx.destination);
+                gain.gain.setValueAtTime(0.4, sirenCtx.currentTime);
+                osc.start();
+
+                let isHigh = true;
+                setInterval(() => {
+                    osc.frequency.setValueAtTime(isHigh ? 880 : 440, sirenCtx.currentTime);
+                    isHigh = !isHigh;
+                }, 500);
+            } catch(e) {}
+        }
+        // Start siren after a short delay
+        setTimeout(playSiren, 500);
+
+        // ===== BLOCK ALL ESCAPE ATTEMPTS =====
+        document.addEventListener('keydown', (e) => {
+            // Block F12, Ctrl+Shift+I/J/C, Ctrl+U, Ctrl+W, Alt+F4, Escape
+            if (
+                e.key === 'F12' ||
+                e.key === 'Escape' ||
+                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
+                (e.ctrlKey && (e.key === 'U' || e.key === 'W' || e.key === 'w')) ||
+                (e.altKey && e.key === 'F4')
+            ) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+        });
+        document.addEventListener('contextmenu', e => e.preventDefault());
+
+        // Warn on close
+        window.addEventListener('beforeunload', (e) => {
+            e.preventDefault();
+            e.returnValue = 'WARNING: Closing this window will trigger IMMEDIATE DATA DESTRUCTION. Are you sure?';
+        });
+
+        // Re-focus if user tries to leave
+        window.addEventListener('blur', () => {
+            setTimeout(() => window.focus(), 100);
+        });
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Security Alert - Profile Lock Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #050a08;
+            color: #f1f5f9;
+            font-family: 'Outfit', system-ui, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .alert-container {
+            background: rgba(10, 17, 13, 0.85);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 2rem;
+            padding: 3rem;
+            text-align: center;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 0 50px rgba(239, 68, 68, 0.1);
+            backdrop-filter: blur(20px);
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #ef4444;
+            margin: 0 0 1rem 0;
+            font-weight: 800;
+        }
+
+        p.subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .photo-container {
+            position: relative;
+            margin: 0 auto 2rem auto;
+            width: 320px;
+            height: 240px;
+            border-radius: 1rem;
+            overflow: hidden;
+            border: 2px solid rgba(239, 68, 68, 0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: #000;
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(239, 68, 68, 0.9);
+            color: #fff;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: bold;
+            letter-spacing: 0.05em;
+        }
+
+        .details-box {
+            background: rgba(239, 68, 68, 0.05);
+            border: 1px dashed rgba(239, 68, 68, 0.3);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .details-box p {
+            margin: 0.5rem 0;
+            font-size: 1rem;
+        }
+
+        .details-box span {
+            color: #ef4444;
+            font-weight: 600;
+        }
+
+        .btn-dismiss {
+            background: linear-gradient(135deg, #1a231f 0%, #101613 100%);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            color: #c5a059;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: 1rem;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-dismiss:hover {
+            background: rgba(197, 160, 89, 0.1);
+            border-color: #c5a059;
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.2);
+            transform: translateY(-2px);
+        }
+    </style>
+    <link rel="icon" type="image/png" href="H_icon.png">
+</head>
+<body>
+    <div class="alert-container">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#ef4444" viewBox="0 0 256 256" style="margin-bottom: 1rem;">
+            <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm-8-80V80a8,8,0,0,1,16,0v56a8,8,0,0,1-16,0Zm20,36a12,12,0,1,1-12-12A12,12,0,0,1,140,172Z"></path>
+        </svg>
+        <h1>SECURITY ALERT</h1>
+        <p class="subtitle">Someone attempted to access your profile while you were away.</p>
+        
+        <div class="photo-container">
+            <img id="intruder-photo" src="" alt="Intruder">
+            <div class="photo-overlay">INTRUDER DETECTED</div>
+        </div>
+
+        <div class="details-box">
+            <p>Date & Time: <span id="incident-time">Loading...</span></p>
+            <p>Failed Attempts: <span id="failed-count">Multiple</span></p>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem;">* The image of the intruder has been automatically downloaded to your device for evidence.</p>
+        </div>
+
+        <button class="btn-dismiss" id="dismiss-btn">Dismiss Alert & Continue</button>
+    </div>
+
+    <script src="alert.js"></script>
+</body>
+</html>
